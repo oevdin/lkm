@@ -193,6 +193,8 @@
 
 <main>
   <div id="homeView">
+  <h1 class="page-title" data-i18n="pageTitle">Продукция</h1>
+  <p class="page-sub" data-i18n="pageSub">Выберите категорию, чтобы посмотреть товары и оптовые цены</p>
   <div class="cat-grid" id="catGrid">
 <a class="cat-card" href="#герметики">
       <div class="cat-icon-wrap" data-slug="герметики" onclick="return handleIconClick(event, this)"><svg viewBox="4.6 12.3 85.3 85.3" class="cat-icon-default"><g transform="rotate(-30 50 50)">
@@ -363,9 +365,9 @@ var EDIT_PASSWORD = '@123';
 /* ============ language / i18n ============ */
 var LANG_KEY = 'unica_price_lang';
 var UI = {
-  ru:{tagline:'РЕШЕНИЕ ДЛЯ ПРОФЕССИОНАЛОВ', pricelist:'ПРАЙС-ЛИСТ', searchPh:'Поиск по названию товара...', wholesale:'Оптовые цены, за 1 шт.', totalLabel:'Всего позиций:', actualLabel:'Актуально на', allCategories:'Все категории', noResults:'Ничего не найдено', developedBy:'Разработано', descFallback:'Описание уточняется.', unit:'товаров'},
-  ky:{tagline:'КЭСИПКӨЙЛӨР ҮЧҮН ЧЕЧИМ', pricelist:'БАА ТИЗМЕСИ', searchPh:'Товар аты боюнча издөө...', wholesale:'Дүң баалар, 1 даана үчүн', totalLabel:'Бардыгы позиция:', actualLabel:'Актуалдуу', allCategories:'Бардык категориялар', noResults:'Эч нерсе табылган жок', developedBy:'Иштеп чыккан', descFallback:'Сүрөттөмө такталууда.', unit:'даана'},
-  uz:{tagline:"ПРОФЕССИОНАЛЛАР УЧУН ЕЧИМ", pricelist:'НАРХНОМА', searchPh:"Маҳсулот номи бўйича қидириш...", wholesale:"Улгуржи нархлар, 1 дона учун", totalLabel:'Жами позиция:', actualLabel:'Амал қилади', allCategories:"Барча тоифалар", noResults:'Ҳеч нарса топилмади', developedBy:'Ишлаб чиқилди', descFallback:'Тавсиф аниқланмоқда.', unit:'дона'}
+  ru:{tagline:'РЕШЕНИЕ ДЛЯ ПРОФЕССИОНАЛОВ', pricelist:'ПРАЙС-ЛИСТ', searchPh:'Поиск по названию товара...', wholesale:'Оптовые цены, за 1 шт.', totalLabel:'Всего позиций:', actualLabel:'Актуально на', allCategories:'Все категории', noResults:'Ничего не найдено', developedBy:'Разработано', descFallback:'Описание уточняется.', unit:'товаров', pageTitle:'Продукция', pageSub:'Выберите категорию, чтобы посмотреть товары и оптовые цены'},
+  ky:{tagline:'КЭСИПКӨЙЛӨР ҮЧҮН ЧЕЧИМ', pricelist:'БАА ТИЗМЕСИ', searchPh:'Товар аты боюнча издөө...', wholesale:'Дүң баалар, 1 даана үчүн', totalLabel:'Бардыгы позиция:', actualLabel:'Актуалдуу', allCategories:'Бардык категориялар', noResults:'Эч нерсе табылган жок', developedBy:'Иштеп чыккан', descFallback:'Сүрөттөмө такталууда.', unit:'даана', pageTitle:'Товарлар', pageSub:'Товарларды жана дүң бааларды көрүү үчүн категорияны тандаңыз'},
+  uz:{tagline:"ПРОФЕССИОНАЛЛАР УЧУН ЕЧИМ", pricelist:'НАРХНОМА', searchPh:"Маҳсулот номи бўйича қидириш...", wholesale:"Улгуржи нархлар, 1 дона учун", totalLabel:'Жами позиция:', actualLabel:'Амал қилади', allCategories:"Барча тоифалар", noResults:'Ҳеч нарса топилмади', developedBy:'Ишлаб чиқилди', descFallback:'Тавсиф аниқланмоқда.', unit:'дона', pageTitle:'Маҳсулотлар', pageSub:'Маҳсулотлар ва улгуржи нархларни кўриш учун тоифани танланг'}
 };
 var CAT_NAMES = {
   ru:{"герметики":"Герметики","монтажные-клеи":"Монтажные клеи","пено-клеи":"Пено-клеи","полиуретановые-пены":"Полиуретановые пены","лакокрасочные-материалы":"Лакокрасочные материалы","утеплители":"Утеплители","водоэмульсионные-краски-грунтовки-пва-клеи":"Водоэмульсионные краски, грунтовки, ПВА клеи","строительные-сухие-смеси":"Строительные сухие смеси"},
