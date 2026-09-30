@@ -8,10 +8,15 @@
   :root{
     --navy:#131c3e; --red:#e2231a; --gray-bg:#f3f4f7; --gray-line:#e4e6ec;
     --text:#1a1d29; --text-mute:#6b7280; --white:#ffffff; --radius:10px;
+    --heading:var(--navy); --page-bg:var(--white); --photo-bg:#ffffff;
+  }
+  body.dark-theme{
+    --page-bg:#0b0f1c; --white:#151b33; --gray-bg:#1c2444; --gray-line:#2a3358;
+    --text:#e4e7f2; --text-mute:#98a0c2; --heading:#eef1fa;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{margin:0;padding:0;font-family:"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:var(--text);background:var(--white);}
+  body{margin:0;padding:0;font-family:"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:var(--text);background:var(--page-bg);}
   a{text-decoration:none;color:inherit;}
 
   .topbar{background:var(--navy);height:6px;}
@@ -19,13 +24,13 @@
   header{
     display:flex;align-items:center;justify-content:space-between;
     padding:16px 40px;border-bottom:1px solid var(--gray-line);flex-wrap:wrap;gap:16px;
-    position:sticky;top:0;background:var(--white);z-index:10;
+    position:sticky;top:0;background:var(--page-bg);z-index:10;
   }
   .brand{display:flex;align-items:center;gap:16px;cursor:pointer;}
-  .logo-box{border:2px solid var(--red);border-radius:4px;padding:6px 12px;font-weight:800;font-size:20px;letter-spacing:1px;color:var(--navy);line-height:1;}
+  .logo-box{border:2px solid var(--red);border-radius:4px;padding:6px 12px;font-weight:800;font-size:20px;letter-spacing:1px;color:var(--heading);line-height:1;}
   .logo-box span{color:var(--red);}
   .logo-sub{font-size:11px;color:var(--text-mute);font-weight:600;letter-spacing:.5px;border-left:1px solid var(--gray-line);padding-left:16px;}
-  .logo-sub b{display:block;color:var(--navy);font-size:14px;letter-spacing:1px;}
+  .logo-sub b{display:block;color:var(--heading);font-size:14px;letter-spacing:1px;}
 
   .search-wrap{flex:1 1 320px;max-width:480px;position:relative;}
   .search-wrap input{width:100%;padding:11px 44px 11px 16px;border:1px solid var(--gray-line);border-radius:6px;font-size:16px;outline:none;background:var(--gray-bg);}
@@ -34,26 +39,44 @@
   .search-wrap .icon svg{width:15px;height:15px;stroke:#fff;}
 
   .header-meta{font-size:13px;color:var(--text-mute);text-align:right;}
-  .header-meta b{color:var(--navy);}
-  .header-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px;}
+  .header-meta b{color:var(--heading);}
+  .header-right{display:none;}
   .lang-switch{display:flex;gap:4px;}
   .lang-btn{border:1px solid var(--gray-line);background:var(--gray-bg);color:var(--text-mute);font-size:11px;font-weight:700;padding:4px 9px;border-radius:5px;cursor:pointer;letter-spacing:.3px;font-family:inherit;}
   .lang-btn.active{background:var(--navy);color:#fff;border-color:var(--navy);}
-  .lang-btn:hover:not(.active){border-color:var(--navy);color:var(--navy);}
+  .lang-btn:hover:not(.active){border-color:var(--navy);color:var(--heading);}
+
+  .menu-btn{display:flex;width:40px;height:40px;border:1px solid var(--gray-line);border-radius:8px;background:var(--gray-bg);align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;}
+  .menu-btn svg{width:20px;height:20px;stroke:var(--heading);fill:none;stroke-width:2;stroke-linecap:round;}
+  .side-overlay{position:fixed;inset:0;background:rgba(8,11,20,.55);z-index:400;display:none;}
+  .side-overlay.open{display:block;}
+  .side-panel{position:fixed;top:0;left:0;bottom:0;width:280px;max-width:82vw;background:var(--white);z-index:401;transform:translateX(-100%);transition:transform .25s ease;padding:24px 20px;overflow-y:auto;box-shadow:4px 0 24px rgba(0,0,0,.25);}
+  .side-panel.open{transform:translateX(0);}
+  .side-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border:none;border-radius:50%;background:var(--gray-bg);display:flex;align-items:center;justify-content:center;cursor:pointer;}
+  .side-close svg{width:14px;height:14px;stroke:var(--heading);fill:none;stroke-width:2.2;}
+  .side-section{margin:0 0 28px;padding-top:8px;}
+  .side-section:first-child{margin-top:26px;}
+  .side-label{font-size:11px;font-weight:700;color:var(--text-mute);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;}
+  .side-meta{font-size:13.5px;color:var(--text-mute);line-height:1.9;}
+  .side-meta b{color:var(--heading);}
+  .theme-switch{display:flex;gap:8px;}
+  .theme-btn{flex:1;border:1px solid var(--gray-line);background:var(--gray-bg);color:var(--text-mute);font-size:12.5px;font-weight:700;padding:9px 6px;border-radius:7px;cursor:pointer;font-family:inherit;}
+  .theme-btn.active{background:var(--navy);color:#fff;border-color:var(--navy);}
 
   main{max-width:1100px;margin:0 auto;padding:40px 40px 80px;}
 
-  .page-title{font-size:34px;font-weight:800;color:var(--navy);margin:0 0 6px;}
+  .page-title{font-size:34px;font-weight:800;color:var(--heading);margin:0 0 6px;}
   .page-sub{color:var(--text-mute);font-size:14px;margin:0 0 32px;}
 
   .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:8px;}
   .cat-card{background:var(--gray-bg);border-radius:var(--radius);padding:30px 26px 24px;border:1px solid transparent;display:block;}
   .cat-card:hover{border-color:var(--navy);background:#eef0f5;}
+  body.dark-theme .cat-card:hover{background:#232c50;}
   .cat-icon-wrap{width:56px;height:56px;margin-bottom:22px;position:relative;border-radius:8px;overflow:hidden;}
   .cat-icon-wrap img{width:100%;height:100%;object-fit:contain;}
   .cat-icon-default{width:56px;height:56px;stroke:#b8bdcc;fill:none;stroke-width:1.4;}
   .cat-icon-edit-hint{display:none;}
-  .cat-card h3{font-size:19px;font-weight:800;color:var(--navy);margin:0 0 4px;}
+  .cat-card h3{font-size:19px;font-weight:800;color:var(--heading);margin:0 0 4px;}
   .cat-card p{margin:0;color:var(--text-mute);font-size:14px;}
 
   .cat-section{display:none;border-top:2px solid var(--gray-line);margin-top:52px;padding-top:36px;scroll-margin-top:80px;}
@@ -61,21 +84,21 @@
   #homeView.hidden{display:none;}
 
   .list-header{display:flex;align-items:baseline;justify-content:space-between;border-bottom:2px solid var(--navy);padding-bottom:14px;margin-bottom:6px;flex-wrap:wrap;gap:10px;}
-  .list-header h2{font-size:26px;font-weight:800;color:var(--navy);margin:0;}
+  .list-header h2{font-size:26px;font-weight:800;color:var(--heading);margin:0;}
   .list-count{font-size:14px;color:var(--text-mute);}
 
-  .back-btn{display:inline-flex;align-items:center;gap:8px;color:var(--navy);font-weight:700;font-size:14px;margin-bottom:18px;}
-  .back-btn svg{width:16px;height:16px;stroke:var(--navy);}
+  .back-btn{display:inline-flex;align-items:center;gap:8px;color:var(--heading);font-weight:700;font-size:14px;margin-bottom:18px;}
+  .back-btn svg{width:16px;height:16px;stroke:var(--heading);}
 
   .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:6px;}
   .prod-card{border:1px solid var(--gray-line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;background:var(--white);}
-  .prod-photo{height:150px;display:flex;align-items:center;justify-content:center;background:var(--white);border-bottom:1px solid var(--gray-line);overflow:hidden;cursor:pointer;position:relative;}
+  .prod-photo{height:150px;display:flex;align-items:center;justify-content:center;background:var(--photo-bg);border-bottom:1px solid var(--gray-line);overflow:hidden;cursor:pointer;position:relative;}
   .prod-photo img{width:100%;height:100%;object-fit:contain;}
   .prod-photo .ph-icon{width:44px;height:44px;stroke:#c3c7d3;fill:none;stroke-width:1.2;}
   .prod-body{padding:12px 14px 16px;display:flex;flex-direction:column;gap:6px;flex:1;}
   .prod-name{font-size:13.5px;font-weight:700;color:var(--text);margin:0;line-height:1.3;
     display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-  .prod-price{font-size:16.5px;font-weight:800;color:var(--navy);}
+  .prod-price{font-size:16.5px;font-weight:800;color:var(--heading);}
   .prod-price small{font-size:11px;font-weight:600;color:var(--text-mute);margin-left:2px;}
 
   footer{background:var(--navy);color:#c9cee0;padding:28px 40px;font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:40px;}
@@ -89,14 +112,14 @@
   /* ===== product detail modal ===== */
   .pd-overlay{position:fixed;inset:0;background:rgba(19,28,62,.55);z-index:200;display:none;align-items:center;justify-content:center;padding:16px;}
   .pd-overlay.open{display:flex;}
-  .pd-modal{background:#fff;border-radius:14px;max-width:720px;width:100%;max-height:90vh;overflow-y:auto;padding:24px;position:relative;}
+  .pd-modal{background:var(--white);border-radius:14px;max-width:720px;width:100%;max-height:90vh;overflow-y:auto;padding:24px;position:relative;}
   .pd-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;border:none;background:var(--gray-bg);display:flex;align-items:center;justify-content:center;cursor:pointer;}
-  .pd-close svg{width:15px;height:15px;stroke:var(--navy);fill:none;stroke-width:2.2;}
+  .pd-close svg{width:15px;height:15px;stroke:var(--heading);fill:none;stroke-width:2.2;}
   .pd-body{display:flex;flex-direction:column;gap:18px;}
   .pd-photo{width:100%;height:220px;border-radius:10px;background:#ffffff;border:1px solid var(--gray-line);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;position:relative;}
   .pd-photo img{width:100%;height:100%;object-fit:contain;}
-  .pd-info h3{margin:0 0 8px;font-size:18px;font-weight:800;color:var(--navy);line-height:1.3;}
-  .pd-price{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:12px;}
+  .pd-info h3{margin:0 0 8px;font-size:18px;font-weight:800;color:var(--heading);line-height:1.3;}
+  .pd-price{font-size:20px;font-weight:800;color:var(--heading);margin-bottom:12px;}
   .pd-price small{font-size:12px;font-weight:600;color:var(--text-mute);margin-left:3px;}
   .pd-desc{font-size:14px;line-height:1.6;color:var(--text);white-space:pre-line;margin:0;}
   @media (min-width:640px){
@@ -150,8 +173,6 @@
     .search-wrap{flex-basis:100%;order:3;max-width:none;}
     .search-wrap input{padding:13px 46px 13px 14px;}
     .search-wrap .icon{width:38px;height:38px;}
-    .header-right{flex:1 1 auto;align-items:flex-start;}
-    .header-meta{flex:1 1 auto;text-align:left;font-size:12px;}
     main{padding:20px 16px 50px;}
     .page-title{font-size:23px;}
     .page-sub{font-size:13px;margin-bottom:22px;}
@@ -193,7 +214,36 @@
       <span data-i18n="actualLabel">Актуально на</span> 28.09.2026
     </div>
   </div>
+  <button type="button" class="menu-btn" onclick="openMenu()" aria-label="Меню">
+    <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
 </header>
+
+<div class="side-overlay" id="sideOverlay" onclick="if(event.target===this) closeMenu()"></div>
+<aside class="side-panel" id="sidePanel">
+  <button class="side-close" onclick="closeMenu()"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round"><path d="M18 6 L6 18"/><path d="M6 6 L18 18"/></svg></button>
+  <div class="side-section">
+    <div class="side-meta">
+      <span data-i18n="wholesale">Оптовые цены, за 1 шт.</span><br>
+      <span data-i18n="totalLabel">Всего позиций:</span> <b>147</b><br>
+      <span data-i18n="actualLabel">Актуально на</span> 28.09.2026
+    </div>
+  </div>
+  <div class="side-section">
+    <div class="side-label" data-i18n="langLabel">Язык</div>
+    <div class="lang-switch">
+      <button type="button" class="lang-btn" data-lang="ru" onclick="setLang('ru')">РУ</button>
+      <button type="button" class="lang-btn" data-lang="ky" onclick="setLang('ky')">КЫР</button>
+    </div>
+  </div>
+  <div class="side-section">
+    <div class="side-label" data-i18n="themeLabel">Тема</div>
+    <div class="theme-switch">
+      <button type="button" class="theme-btn" data-theme="light" onclick="setTheme('light')" data-i18n="lightTheme">Светлая</button>
+      <button type="button" class="theme-btn" data-theme="dark" onclick="setTheme('dark')" data-i18n="darkTheme">Тёмная</button>
+    </div>
+  </div>
+</aside>
 
 <main>
   <div id="homeView">
@@ -372,9 +422,9 @@ var EDIT_PASSWORD = '@123';
 /* ============ language / i18n ============ */
 var LANG_KEY = 'unica_price_lang';
 var UI = {
-  ru:{tagline:'РЕШЕНИЕ ДЛЯ ПРОФЕССИОНАЛОВ', pricelist:'ПРАЙС-ЛИСТ', searchPh:'Поиск по названию товара...', wholesale:'Оптовые цены, за 1 шт.', totalLabel:'Всего позиций:', actualLabel:'Актуально на', allCategories:'Все категории', noResults:'Ничего не найдено', developedBy:'Разработано', descFallback:'Описание уточняется.', unit:'товаров', pageTitle:'Продукция', pageSub:'Выберите категорию, чтобы посмотреть товары и оптовые цены', whatsappTitle:'Написать в WhatsApp'},
-  ky:{tagline:'КЭСИПКӨЙЛӨР ҮЧҮН ЧЕЧИМ', pricelist:'БАА ТИЗМЕСИ', searchPh:'Товар аты боюнча издөө...', wholesale:'Дүң баалар, 1 даана үчүн', totalLabel:'Бардыгы позиция:', actualLabel:'Актуалдуу', allCategories:'Бардык категориялар', noResults:'Эч нерсе табылган жок', developedBy:'Иштеп чыккан', descFallback:'Сүрөттөмө такталууда.', unit:'даана', pageTitle:'Товарлар', pageSub:'Товарларды жана дүң бааларды көрүү үчүн категорияны тандаңыз', whatsappTitle:'WhatsApp аркылуу жазуу'},
-  uz:{tagline:"ПРОФЕССИОНАЛЛАР УЧУН ЕЧИМ", pricelist:'НАРХНОМА', searchPh:"Маҳсулот номи бўйича қидириш...", wholesale:"Улгуржи нархлар, 1 дона учун", totalLabel:'Жами позиция:', actualLabel:'Амал қилади', allCategories:"Барча тоифалар", noResults:'Ҳеч нарса топилмади', developedBy:'Ишлаб чиқилди', descFallback:'Тавсиф аниқланмоқда.', unit:'дона', pageTitle:'Маҳсулотлар', pageSub:'Маҳсулотлар ва улгуржи нархларни кўриш учун тоифани танланг', whatsappTitle:'WhatsApp орқали ёзинг'}
+  ru:{tagline:'РЕШЕНИЕ ДЛЯ ПРОФЕССИОНАЛОВ', pricelist:'ПРАЙС-ЛИСТ', searchPh:'Поиск по названию товара...', wholesale:'Оптовые цены, за 1 шт.', totalLabel:'Всего позиций:', actualLabel:'Актуально на', allCategories:'Все категории', noResults:'Ничего не найдено', developedBy:'Разработано', descFallback:'Описание уточняется.', unit:'товаров', pageTitle:'Продукция', pageSub:'Выберите категорию, чтобы посмотреть товары и оптовые цены', whatsappTitle:'Написать в WhatsApp', langLabel:'Язык', themeLabel:'Тема', lightTheme:'Светлая', darkTheme:'Тёмная'},
+  ky:{tagline:'КЭСИПКӨЙЛӨР ҮЧҮН ЧЕЧИМ', pricelist:'БАА ТИЗМЕСИ', searchPh:'Товар аты боюнча издөө...', wholesale:'Дүң баалар, 1 даана үчүн', totalLabel:'Бардыгы позиция:', actualLabel:'Актуалдуу', allCategories:'Бардык категориялар', noResults:'Эч нерсе табылган жок', developedBy:'Иштеп чыккан', descFallback:'Сүрөттөмө такталууда.', unit:'даана', pageTitle:'Товарлар', pageSub:'Товарларды жана дүң бааларды көрүү үчүн категорияны тандаңыз', whatsappTitle:'WhatsApp аркылуу жазуу', langLabel:'Тил', themeLabel:'Тема', lightTheme:'Жарык', darkTheme:'Караңгы'},
+  uz:{tagline:"ПРОФЕССИОНАЛЛАР УЧУН ЕЧИМ", pricelist:'НАРХНОМА', searchPh:"Маҳсулот номи бўйича қидириш...", wholesale:"Улгуржи нархлар, 1 дона учун", totalLabel:'Жами позиция:', actualLabel:'Амал қилади', allCategories:"Барча тоифалар", noResults:'Ҳеч нарса топилмади', developedBy:'Ишлаб чиқилди', descFallback:'Тавсиф аниқланмоқда.', unit:'дона', pageTitle:'Маҳсулотлар', pageSub:'Маҳсулотлар ва улгуржи нархларни кўриш учун тоифани танланг', whatsappTitle:'WhatsApp орқали ёзинг', langLabel:'Тил', themeLabel:'Мавзу', lightTheme:'Ёруғ', darkTheme:'Тўқ'}
 };
 var CAT_NAMES = {
   ru:{"герметики":"Герметики","монтажные-клеи":"Монтажные клеи","пено-клеи":"Пено-клеи","полиуретановые-пены":"Полиуретановые пены","лакокрасочные-материалы":"Лакокрасочные материалы","утеплители":"Утеплители","водоэмульсионные-краски-грунтовки-пва-клеи":"Водоэмульсионные краски, грунтовки, ПВА клеи","строительные-сухие-смеси":"Строительные сухие смеси"},
@@ -383,6 +433,37 @@ var CAT_NAMES = {
 };
 var CAT_COUNTS = {"герметики":14,"монтажные-клеи":11,"пено-клеи":2,"полиуретановые-пены":7,"лакокрасочные-материалы":42,"утеплители":3,"водоэмульсионные-краски-грунтовки-пва-клеи":44,"строительные-сухие-смеси":24};
 var BCP47 = {ru:'ru', ky:'ky', uz:'uz'};
+
+/* ============ side menu (mobile nav / settings panel) ============ */
+function openMenu(){
+  document.getElementById('sideOverlay').classList.add('open');
+  document.getElementById('sidePanel').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMenu(){
+  document.getElementById('sideOverlay').classList.remove('open');
+  document.getElementById('sidePanel').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') closeMenu();
+});
+
+/* ============ theme (light / dark) ============ */
+var THEME_KEY = 'unica_price_theme';
+function getTheme(){
+  try { return localStorage.getItem(THEME_KEY) || 'light'; } catch(e){ return 'light'; }
+}
+function setTheme(theme){
+  try { localStorage.setItem(THEME_KEY, theme); } catch(e){}
+  applyTheme(theme);
+}
+function applyTheme(theme){
+  document.body.classList.toggle('dark-theme', theme === 'dark');
+  document.querySelectorAll('.theme-btn').forEach(function(b){
+    b.classList.toggle('active', b.getAttribute('data-theme') === theme);
+  });
+}
 
 function getLang(){
   var AVAILABLE = ['ru','ky'];
@@ -662,6 +743,7 @@ function filterProducts(q){
 document.addEventListener('DOMContentLoaded', function(){
   applyOverrides();
   applyLanguage(getLang());
+  applyTheme(getTheme());
   route();
 });
 </script>
