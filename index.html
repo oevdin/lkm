@@ -123,6 +123,11 @@
   body.edit-mode .cat-icon-edit-hint{display:flex;position:absolute;inset:0;background:rgba(19,28,62,.6);color:#fff;font-size:9px;font-weight:700;align-items:center;justify-content:center;text-align:center;padding:4px;line-height:1.2;}
   body.edit-mode .prod-card{outline:1.5px dashed #b9c0d6;}
   .edit-toolbar{position:fixed;left:0;right:0;bottom:0;background:var(--navy);color:#fff;padding:12px 20px;display:none;align-items:center;justify-content:center;gap:14px;z-index:300;font-size:13.5px;font-weight:700;flex-wrap:wrap;}
+  .whatsapp-fab{position:fixed;right:22px;bottom:22px;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:250;transition:transform .15s ease;}
+  .whatsapp-fab:hover{transform:scale(1.07);}
+  .whatsapp-fab svg{width:30px;height:30px;fill:#fff;}
+  body.edit-mode .whatsapp-fab{bottom:78px;}
+  @media (max-width:560px){ .whatsapp-fab{right:16px;bottom:16px;width:52px;height:52px;} .whatsapp-fab svg{width:27px;height:27px;} }
   body.edit-mode .edit-toolbar{display:flex;}
   .edit-toolbar button{border:none;border-radius:7px;padding:9px 16px;font-size:13px;font-weight:700;cursor:pointer;}
   .edit-toolbar .et-save{background:#1a9c5c;color:#fff;}
@@ -354,6 +359,9 @@
   <button class="et-exit" onclick="exitEditMode()">Выйти из редактирования</button>
 </div>
 
+<a class="whatsapp-fab" href="https://wa.me/996555560101" target="_blank" rel="noopener" aria-label="WhatsApp" data-i18n-title="whatsappTitle" title="Написать в WhatsApp">
+  <svg viewBox="0 0 32 32"><path d="M16.001 3C9.107 3 3.5 8.607 3.5 15.5c0 2.385.664 4.617 1.816 6.52L3 29l7.145-2.275a12.44 12.44 0 0 0 5.856 1.49h.005c6.893 0 12.5-5.607 12.5-12.5S22.894 3 16.001 3zm0 22.75h-.004a10.2 10.2 0 0 1-5.198-1.424l-.373-.222-3.868 1.232 1.257-3.77-.243-.386a10.19 10.19 0 0 1-1.57-5.43c0-5.652 4.599-10.25 10.253-10.25 2.739 0 5.313 1.067 7.248 3.005a10.182 10.182 0 0 1 3.001 7.25c0 5.653-4.599 10.245-10.253 10.245zm5.62-7.675c-.308-.154-1.822-.9-2.104-1.002-.283-.103-.489-.154-.694.154-.206.309-.798 1.002-.979 1.208-.18.206-.36.232-.668.078-.308-.155-1.3-.479-2.475-1.526-.915-.816-1.533-1.824-1.713-2.132-.18-.309-.02-.475.135-.628.138-.138.308-.36.463-.54.154-.18.206-.309.309-.515.103-.206.051-.386-.026-.54-.077-.154-.694-1.672-.951-2.29-.25-.6-.505-.519-.694-.528-.18-.008-.386-.01-.591-.01a1.14 1.14 0 0 0-.823.386c-.283.309-1.08 1.056-1.08 2.574s1.106 2.985 1.26 3.191c.155.206 2.176 3.322 5.272 4.658.736.318 1.31.508 1.758.65.738.235 1.41.202 1.941.122.592-.088 1.822-.745 2.079-1.464.257-.72.257-1.336.18-1.465-.077-.128-.283-.206-.591-.36z"/></svg>
+</a>
 <input type="file" id="hiddenFileInput" accept="image/*" style="display:none">
 
 <script>
@@ -365,9 +373,9 @@ var EDIT_PASSWORD = '@123';
 /* ============ language / i18n ============ */
 var LANG_KEY = 'unica_price_lang';
 var UI = {
-  ru:{tagline:'РЕШЕНИЕ ДЛЯ ПРОФЕССИОНАЛОВ', pricelist:'ПРАЙС-ЛИСТ', searchPh:'Поиск по названию товара...', wholesale:'Оптовые цены, за 1 шт.', totalLabel:'Всего позиций:', actualLabel:'Актуально на', allCategories:'Все категории', noResults:'Ничего не найдено', developedBy:'Разработано', descFallback:'Описание уточняется.', unit:'товаров', pageTitle:'Продукция', pageSub:'Выберите категорию, чтобы посмотреть товары и оптовые цены'},
-  ky:{tagline:'КЭСИПКӨЙЛӨР ҮЧҮН ЧЕЧИМ', pricelist:'БАА ТИЗМЕСИ', searchPh:'Товар аты боюнча издөө...', wholesale:'Дүң баалар, 1 даана үчүн', totalLabel:'Бардыгы позиция:', actualLabel:'Актуалдуу', allCategories:'Бардык категориялар', noResults:'Эч нерсе табылган жок', developedBy:'Иштеп чыккан', descFallback:'Сүрөттөмө такталууда.', unit:'даана', pageTitle:'Товарлар', pageSub:'Товарларды жана дүң бааларды көрүү үчүн категорияны тандаңыз'},
-  uz:{tagline:"ПРОФЕССИОНАЛЛАР УЧУН ЕЧИМ", pricelist:'НАРХНОМА', searchPh:"Маҳсулот номи бўйича қидириш...", wholesale:"Улгуржи нархлар, 1 дона учун", totalLabel:'Жами позиция:', actualLabel:'Амал қилади', allCategories:"Барча тоифалар", noResults:'Ҳеч нарса топилмади', developedBy:'Ишлаб чиқилди', descFallback:'Тавсиф аниқланмоқда.', unit:'дона', pageTitle:'Маҳсулотлар', pageSub:'Маҳсулотлар ва улгуржи нархларни кўриш учун тоифани танланг'}
+  ru:{tagline:'РЕШЕНИЕ ДЛЯ ПРОФЕССИОНАЛОВ', pricelist:'ПРАЙС-ЛИСТ', searchPh:'Поиск по названию товара...', wholesale:'Оптовые цены, за 1 шт.', totalLabel:'Всего позиций:', actualLabel:'Актуально на', allCategories:'Все категории', noResults:'Ничего не найдено', developedBy:'Разработано', descFallback:'Описание уточняется.', unit:'товаров', pageTitle:'Продукция', pageSub:'Выберите категорию, чтобы посмотреть товары и оптовые цены', whatsappTitle:'Написать в WhatsApp'},
+  ky:{tagline:'КЭСИПКӨЙЛӨР ҮЧҮН ЧЕЧИМ', pricelist:'БАА ТИЗМЕСИ', searchPh:'Товар аты боюнча издөө...', wholesale:'Дүң баалар, 1 даана үчүн', totalLabel:'Бардыгы позиция:', actualLabel:'Актуалдуу', allCategories:'Бардык категориялар', noResults:'Эч нерсе табылган жок', developedBy:'Иштеп чыккан', descFallback:'Сүрөттөмө такталууда.', unit:'даана', pageTitle:'Товарлар', pageSub:'Товарларды жана дүң бааларды көрүү үчүн категорияны тандаңыз', whatsappTitle:'WhatsApp аркылуу жазуу'},
+  uz:{tagline:"ПРОФЕССИОНАЛЛАР УЧУН ЕЧИМ", pricelist:'НАРХНОМА', searchPh:"Маҳсулот номи бўйича қидириш...", wholesale:"Улгуржи нархлар, 1 дона учун", totalLabel:'Жами позиция:', actualLabel:'Амал қилади', allCategories:"Барча тоифалар", noResults:'Ҳеч нарса топилмади', developedBy:'Ишлаб чиқилди', descFallback:'Тавсиф аниқланмоқда.', unit:'дона', pageTitle:'Маҳсулотлар', pageSub:'Маҳсулотлар ва улгуржи нархларни кўриш учун тоифани танланг', whatsappTitle:'WhatsApp орқали ёзинг'}
 };
 var CAT_NAMES = {
   ru:{"герметики":"Герметики","монтажные-клеи":"Монтажные клеи","пено-клеи":"Пено-клеи","полиуретановые-пены":"Полиуретановые пены","лакокрасочные-материалы":"Лакокрасочные материалы","утеплители":"Утеплители","водоэмульсионные-краски-грунтовки-пва-клеи":"Водоэмульсионные краски, грунтовки, ПВА клеи","строительные-сухие-смеси":"Строительные сухие смеси"},
@@ -397,6 +405,10 @@ function applyLanguage(lang){
   document.querySelectorAll('[data-i18n-ph]').forEach(function(el){
     var key = el.getAttribute('data-i18n-ph');
     if(UI[lang][key] !== undefined) el.placeholder = UI[lang][key];
+  });
+  document.querySelectorAll('[data-i18n-title]').forEach(function(el){
+    var key = el.getAttribute('data-i18n-title');
+    if(UI[lang][key] !== undefined) el.title = UI[lang][key];
   });
   document.querySelectorAll('[data-i18n-cat]').forEach(function(el){
     var slug = el.getAttribute('data-i18n-cat');
