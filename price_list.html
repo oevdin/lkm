@@ -186,7 +186,6 @@
     <div class="lang-switch">
       <button type="button" class="lang-btn active" data-lang="ru" onclick="setLang('ru')">РУ</button>
       <button type="button" class="lang-btn" data-lang="ky" onclick="setLang('ky')">КЫР</button>
-      <button type="button" class="lang-btn" data-lang="uz" onclick="setLang('uz')">ЎЗ</button>
     </div>
     <div class="header-meta">
       <span data-i18n="wholesale">Оптовые цены, за 1 шт.</span><br>
@@ -386,7 +385,11 @@ var CAT_COUNTS = {"герметики":14,"монтажные-клеи":11,"пе
 var BCP47 = {ru:'ru', ky:'ky', uz:'uz'};
 
 function getLang(){
-  try { return localStorage.getItem(LANG_KEY) || 'ru'; } catch(e){ return 'ru'; }
+  var AVAILABLE = ['ru','ky'];
+  try {
+    var l = localStorage.getItem(LANG_KEY) || 'ru';
+    return AVAILABLE.indexOf(l) !== -1 ? l : 'ru';
+  } catch(e){ return 'ru'; }
 }
 function setLang(lang){
   try { localStorage.setItem(LANG_KEY, lang); } catch(e){}
