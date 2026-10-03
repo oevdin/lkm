@@ -189,6 +189,7 @@
     .prod-body{padding:10px 10px 12px;}
   }
 </style>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
 
@@ -452,7 +453,17 @@ document.addEventListener('keydown', function(e){
 /* ============ theme (light / dark) ============ */
 var THEME_KEY = 'unica_price_theme';
 function getTheme(){
-  try { return localStorage.getItem(THEME_KEY) || 'light'; } catch(e){ return 'light'; }
+  try {
+    var saved = localStorage.getItem(THEME_KEY);
+    if(saved) return saved;
+  } catch(e){}
+  // no saved preference yet: if opened inside Telegram, follow its theme
+  try {
+    if(window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.colorScheme){
+      return window.Telegram.WebApp.colorScheme === 'dark' ? 'dark' : 'light';
+    }
+  } catch(e){}
+  return 'light';
 }
 function setTheme(theme){
   try { localStorage.setItem(THEME_KEY, theme); } catch(e){}
@@ -463,6 +474,28 @@ function applyTheme(theme){
   document.querySelectorAll('.theme-btn').forEach(function(b){
     b.classList.toggle('active', b.getAttribute('data-theme') === theme);
   });
+  syncTelegramChrome(theme);
+}
+
+/* ============ Telegram Mini App integration ============ */
+function syncTelegramChrome(theme){
+  try {
+    var tg = window.Telegram && window.Telegram.WebApp;
+    if(!tg) return;
+    var bg = theme === 'dark' ? '#0d1226' : '#ffffff';
+    if(tg.setHeaderColor) tg.setHeaderColor(bg);
+    if(tg.setBackgroundColor) tg.setBackgroundColor(bg);
+  } catch(e){}
+}
+function initTelegram(){
+  try {
+    var tg = window.Telegram && window.Telegram.WebApp;
+    if(!tg) return;
+    tg.ready();
+    tg.expand();
+    if(tg.disableVerticalSwipes) tg.disableVerticalSwipes();
+    if(tg.enableClosingConfirmation) tg.enableClosingConfirmation();
+  } catch(e){}
 }
 
 function getLang(){
@@ -741,6 +774,7 @@ function filterProducts(q){
 }
 
 document.addEventListener('DOMContentLoaded', function(){
+  initTelegram();
   applyOverrides();
   applyLanguage(getLang());
   applyTheme(getTheme());
